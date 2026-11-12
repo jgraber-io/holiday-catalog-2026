@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Holiday Catalog 2026: a holiday wish list in the style of an early-'80s department store Christmas catalog.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23c0232a%27/%3E%3Ctext x=%2716%27 y=%2724%27 font-family=%27Helvetica,Arial%27 font-weight=%27900%27 font-style=%27italic%27 font-size=%2722%27 text-anchor=%27middle%27 fill=%27%23fff7ea%27%3EH%3C/text%3E%3C/svg%3E">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Holiday Catalog 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,300..900;1,62..125,300..900&display=swap">
+<style>
+/* Layout: scanned early-'80s department-store catalog. Each department is a printed sheet,
+   two sheets to a spread on a dark scanner bed. Inside a sheet: photo mosaic packed edge to edge
+   (thin gutters, numbered tabs, price tags on the pictures) beside a narrow column of small,
+   tight Helvetica-style copy with dot-leader order lines. Boxed folio at the foot. */
+:root {
+  --bed: #1a1816;          /* scanner bed / dark border around the scans */
+  --sheet: #f2ecdd;        /* aged coated stock */
+  --sheet-edge: #e2d8c0;
+  --ink: #1a1714;
+  --ink-soft: #3f3934;
+  --tag-green: #1e7438;
+  --tag-red: #c0232a;
+  --form-blue: #22508f;
+  --rule: #b9ae97;
+  --sans: "Helvetica Neue", Helvetica, "Archivo", Arial, sans-serif;
+  --copy: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bed); color: var(--ink); font-family: var(--copy); font-size: 13px; line-height: 1.22;
+  padding-left: max(12px, env(safe-area-inset-left, 0px));
+  padding-right: max(12px, env(safe-area-inset-right, 0px));
+  padding-block: 14px 30px;
+}
+.book { max-width: 1320px; margin: 0 auto; display: grid; gap: 14px; }
+
+/* ---------- a printed sheet ---------- */
+.sheet {
+  position: relative; background: var(--sheet); padding: 12px 12px 8px; min-width: 0;
+  box-shadow: inset 0 0 60px rgba(120, 95, 50, .22), inset 0 0 6px rgba(120, 95, 50, .25);
+  display: flex; flex-direction: column;
+}
+.sheet::before { /* paper grain + faint halftone */
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 5; mix-blend-mode: multiply;
+  background:
+    radial-gradient(rgba(60,45,20,.07) .6px, transparent .8px) 0 0 / 3px 3px,
+    radial-gradient(rgba(60,45,20,.05) .6px, transparent .8px) 1px 2px / 5px 5px;
+}
+.spread { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+.spread > .sheet:nth-child(odd) { box-shadow: inset -14px 0 18px -12px rgba(0,0,0,.35), inset 0 0 60px rgba(120,95,50,.22); }
+.spread > .sheet:nth-child(even) { box-shadow: inset 14px 0 18px -12px rgba(0,0,0,.35), inset 0 0 60px rgba(120,95,50,.22); }
+.spread > .sheet:only-child { grid-column: 1 / -1; }
+@media (max-width: 980px) { .spread { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
+
+/* ---------- front page / index ---------- */
+.front { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 12px; align-items: stretch; }
+@media (max-width: 760px) { .front { grid-template-columns: minmax(0, 1fr); } }
+.title-block { background: var(--tag-red); color: #fff7ea; padding: 14px 16px 12px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; position: relative; overflow: hidden; }
+.title-block .eyebrow { font: 700 11px/1 var(--copy); letter-spacing: .2em; text-transform: uppercase; }
+.title-block h1 { margin: 0; font: italic 900 clamp(40px, 7.4vw, 92px)/.86 var(--copy); font-stretch: 82%; letter-spacing: -.035em;
+  text-shadow: 2px 1px 0 rgba(0, 0, 0, .28); }
+.title-block h1 span { display: block; font-style: normal; font-weight: 300; font-stretch: 100%; letter-spacing: -.01em; font-size: .52em; margin-top: .08em; }
+.title-block .stripe { position: absolute; right: -10px; top: 0; bottom: 0; width: 70px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; transform: skewX(-14deg); opacity: .9; }
+.title-block .stripe i { background: #f3b51c; } .title-block .stripe i:nth-child(2) { background: #e86a1c; } .title-block .stripe i:nth-child(3) { background: #fff7ea; }
+.title-block p { margin: 0; font: 400 13.5px/1.3 var(--copy); max-width: 48ch; padding-right: 70px; }
+
+.index { border: 1.5px solid var(--ink); padding: 8px 10px; background: rgba(255,255,255,.35); display: flex; flex-direction: column; gap: 6px; }
+.index h2 { margin: 0; font: 900 15px/1 var(--copy); font-stretch: 112%; letter-spacing: .14em; text-transform: uppercase; border-bottom: 1.5px solid var(--ink); padding-bottom: 5px; }
+.idx-row { display: flex; align-items: baseline; gap: 4px; width: 100%; background: none; border: 0; padding: 2px 0; cursor: pointer; color: var(--ink);
+  font: 700 13.5px/1.2 var(--copy); font-stretch: 88%; text-align: left; }
+.idx-row .lead { flex: 1; border-bottom: 1.5px dotted var(--ink); transform: translateY(-3px); min-width: 16px; }
+.idx-row .pg { font-variant-numeric: tabular-nums; }
+.idx-row[aria-pressed="true"] { color: var(--tag-red); }
+.idx-row[aria-pressed="true"]::before { content: "▶"; font-size: 9px; margin-right: 3px; }
+.idx-row:hover .name { text-decoration: underline; }
+.opts { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: center; margin-top: 4px; padding-top: 6px; border-top: 1px solid var(--rule); font: 400 12px/1.2 var(--copy); }
+.opts .k { font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-size: 10.5px; }
+.boxes { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.box-opt { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; background: none; border: 0; padding: 2px 0; color: var(--ink); font: 500 12.5px/1 var(--copy); font-stretch: 88%; }
+.box-opt::before { content: ""; width: 11px; height: 11px; border: 1.3px solid var(--ink); background: #fff; display: inline-grid; place-items: center; font: 900 11px/1 var(--copy); }
+.box-opt[aria-pressed="true"]::before { content: "✕"; color: var(--form-blue); }
+:focus-visible { outline: 2px solid var(--form-blue); outline-offset: 2px; }
+
+/* ---------- headline styles ---------- */
+.headline { margin: 0 0 6px; }
+.headline h2 { margin: 0; }
+.headline.light h2 { font: 300 clamp(22px, 2.6vw, 32px)/1.02 var(--sans); letter-spacing: -.015em; text-align: right; }
+.headline.caps h2 { font: 300 clamp(17px, 2vw, 23px)/1.1 var(--sans); letter-spacing: .015em; text-transform: uppercase; text-align: center; }
+.headline.band { background: #0c0e1a; margin: -12px -12px 8px; padding: 10px 12px 9px;
+  background-image: radial-gradient(rgba(255,255,255,.55) .7px, transparent 1px), radial-gradient(rgba(255,255,255,.3) .6px, transparent 1px);
+  background-size: 47px 31px, 23px 41px; background-position: 3px 7px, 17px 2px; }
+.headline.band h2 { font: 900 clamp(24px, 3.4vw, 40px)/.95 var(--copy); font-stretch: 125%; letter-spacing: .03em; text-transform: uppercase;
+  color: transparent; -webkit-text-stroke: 1.4px #efe9dc; }
+
+/* ---------- inside a sheet ---------- */
+.layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 10px; align-items: start; flex: 1; }
+.sheet.full .layout { grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); }
+@media (max-width: 620px) { .layout, .sheet.full .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.mosaic { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #fbf8f0; padding: 0; }
+.panel { position: relative; overflow: hidden; aspect-ratio: 1 / 1.05; max-width: 100%; background: var(--bg-photo); min-width: 0; margin: 0; }
+.mosaic > .panel:first-child:nth-last-child(odd) { grid-column: 1 / -1; aspect-ratio: 16 / 11; }
+.mosaic > .panel:only-child { aspect-ratio: 4 / 3.6; }
+.panel-link { position: absolute; inset: 0; display: block; color: inherit; }
+.panel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 5%;
+  filter: sepia(.2) saturate(.88) contrast(.94) brightness(.98); }
+.panel .fallback { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 14%;
+  font: 300 clamp(18px, 2.3vw, 26px)/1.04 var(--sans); color: rgba(255,250,238,.9); letter-spacing: -.01em; text-wrap: balance; }
+.panel .grain { position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(130% 100% at 50% 25%, rgba(255,240,210,.22), transparent 55%),
+    radial-gradient(150% 120% at 50% 50%, transparent 60%, rgba(30,20,5,.28)),
+    radial-gradient(rgba(0,0,0,.09) .7px, transparent .9px) 0 0 / 3px 3px; }
+.panel img.cover[src] { object-fit: cover; padding: 0; filter: sepia(.22) saturate(.85) contrast(.92) brightness(1.02); }
+.panel-link:has(img) .fallback { display: none; }
+.panel img[src^="img/"] { padding: 9%; filter: sepia(.2) saturate(.88) contrast(.94) brightness(.98) drop-shadow(0 8px 9px rgba(0,0,0,.4)); }
+.panel-link:hover .grain { background-color: rgba(255,255,255,.05); }
+.num { position: absolute; right: 6px; bottom: 6px; z-index: 3; min-width: 20px; height: 20px; padding: 0 4px;
+  display: grid; place-items: center; background: #fff; color: var(--ink); border: 1px solid var(--ink); font: 700 12.5px/1 var(--copy); }
+.caption { position: absolute; left: 8px; bottom: 7px; z-index: 3; max-width: 68%; color: #fff; font: italic 500 11px/1.15 var(--copy); text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+.ptag { position: absolute; z-index: 3; right: 8px; top: 8px; text-align: right; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.ptag small { display: block; font: italic 500 10px/1.1 var(--copy); }
+.ptag b { font: 400 23px/1 var(--sans); letter-spacing: -.02em; }
+.ribbon { position: absolute; z-index: 4; left: 0; top: 10px; background: #fffaf0; color: var(--ink); border: 2px solid var(--tag-green);
+  border-left: 0; padding: 0 10px 5px 0; box-shadow: 1px 2px 3px rgba(0,0,0,.3); }
+.ribbon .hdr { display: block; background: var(--tag-green); color: #fff; font: italic 800 12px/1.1 Georgia, "Times New Roman", serif; padding: 3px 9px 3px 10px; margin-bottom: 3px; }
+.ribbon .cut { display: inline-block; margin-left: 10px; font: 400 23px/1 var(--sans); letter-spacing: -.02em; }
+.ribbon .was { display: inline-block; margin-left: 10px; font: 400 10px/1.1 var(--copy); vertical-align: 3px; }
+.ribbon .now { display: inline-block; margin-left: 4px; font: 400 16px/1 var(--sans); }
+
+/* copy column: small, tight, Helvetica-ish */
+.copycol { font-size: 12.4px; line-height: 1.2; font-stretch: 86%; color: var(--ink); min-width: 0; }
+.entry { margin-bottom: 9px; }
+.entry:last-child { margin-bottom: 0; }
+.entry p { margin: 0 0 1px; }
+.entry .t { font-weight: 800; }
+.entry .maker { font-style: italic; }
+.entry .info { text-transform: uppercase; font-size: 11px; letter-spacing: .01em; line-height: 1.22; }
+.entry .info b { font-weight: 700; }
+.entry .note { font-style: italic; color: var(--tag-red); }
+.group-head { font-weight: 700; margin-bottom: 4px; }
+.oline { display: flex; align-items: baseline; gap: 3px; font-variant-numeric: tabular-nums; flex-wrap: wrap; }
+.oline .lead { flex: 1 1 16px; min-width: 16px; border-bottom: 1.4px dotted var(--ink); transform: translateY(-3px); }
+.oline .amt { white-space: nowrap; font-weight: 500; }
+.shop { display: inline-block; margin-top: 4px; background: var(--tag-green); color: #fff; text-decoration: none;
+  font: 700 10.5px/1 var(--copy); font-stretch: 100%; letter-spacing: .08em; text-transform: uppercase; padding: 5px 7px 4px; }
+.shop:hover { background: #17602d; }
+
+/* folio */
+.folio { display: flex; justify-content: flex-end; align-items: center; gap: 5px; margin-top: 8px; font: 700 13px/1 var(--copy); }
+.folio.left { justify-content: flex-start; }
+.folio .box { border: 1.5px solid var(--ink); padding: 2px 5px; font: italic 800 12px/1 var(--copy); }
+.folio .small { font: 500 8.5px/1 var(--copy); letter-spacing: .06em; }
+
+/* ---------- order form ---------- */
+.orderform { border: 2px solid var(--form-blue); background: #fffdf6; }
+.orderform header { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; padding: 6px 10px; background: var(--form-blue); color: #fff; }
+.orderform header h2 { margin: 0; font: 800 18px/1 var(--copy); font-stretch: 112%; text-transform: uppercase; letter-spacing: .03em; }
+.orderform header span { font: 400 12px/1.2 var(--copy); }
+.tablewrap { overflow-x: auto; }
+table.ob { width: 100%; border-collapse: collapse; min-width: 720px; font: 400 13px/1.25 var(--copy); font-stretch: 88%; }
+.ob th { text-align: left; color: var(--form-blue); font: 700 9.5px/1.15 var(--copy); letter-spacing: .08em; text-transform: uppercase; padding: 5px 7px; border-bottom: 1.5px solid var(--form-blue); border-right: 1px solid #b6c4de; }
+.ob td { padding: 6px 7px; border-bottom: 1px solid #b6c4de; border-right: 1px solid #b6c4de; vertical-align: top; }
+.ob td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ob .shop { margin-top: 0; }
+.ob .fill td { height: 26px; }
+
+.backcover { color: #8f877c; text-align: center; font: 400 11.5px/1.4 var(--copy); }
+</style>
+</head>
+<body>
+
+<div class="book">
+  <section class="sheet front-sheet" aria-label="Front page">
+    <div class="front">
+      <div class="title-block">
+        <div class="stripe" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="eyebrow">Fall · Winter 2026 Edition</div>
+        <h1>Holiday Catalog<span>2026</span></h1>
+        <p>A few things I'd be glad to find under the tree. Prices are what each shop listed on Nov. 11; follow the green tags for today's price.</p>
+      </div>
+      <nav class="index" aria-label="Index">
+        <h2>Index</h2>
+        <div id="idx"></div>
+        <div class="opts">
+          <span class="k">Show</span><div class="boxes" id="optView"></div>
+          <span class="k">Sort</span><div class="boxes" id="optSort"></div>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <main id="out" class="book" aria-live="polite"></main>
+
+  <p class="backcover">Holiday Catalog · 2026 · Prices as of Nov. 11 and subject to change</p>
+</div>
+<script type="application/json" id="catalog">
+{
+  "sections": [
+    {
+      "id": "sport",
+      "name": "Sporting Goods",
+      "headline": "Swing into the new year with",
+      "style": "light",
+      "photo": "#6f6a63"
+    },
+    {
+      "id": "hats",
+      "name": "Gentleman's Shop",
+      "headline": "The gentleman's shop . . . handsome gifts from Donegal to Scandinavia",
+      "style": "caps",
+      "photo": "#4f6a4a"
+    },
+    {
+      "id": "rpg",
+      "name": "Fantasy Games",
+      "headline": "Worlds of imagination",
+      "style": "band",
+      "photo": "#24407c"
+    }
+  ],
+  "items": [
+    {
+      "id": "haxe-slam-pad",
+      "section": "sport",
+      "catno": "34 K 7101",
+      "title": "HAXE Sledgehammer Slam Pad",
+      "maker": "HAXE Fitness",
+      "url": "https://haxefitness.com/products/sledgehammer-slam-pad",
+      "img": "img/slam-pad.webp",
+      "fit": "cover",
+      "caption": "Shown with 16-lb. sledgehammer (not incl.)",
+      "price": 131.95,
+      "was": 164.95,
+      "currency": "USD",
+      "unit": "",
+      "blurb": "Say goodbye to the tractor tire. Recycled impact pad takes repeated heavy strikes from sledgehammers and maces without breaking down. Works on concrete, driveways or gym flooring; no assembly.",
+      "info": "<b>Size:</b> 16x18¼x2¾ in. high. For tools 8 to 30 lbs. Lifetime warranty.",
+      "shipwt": "Shpg. wt. 21 lbs. 8 oz.",
+      "note": ""
+    },
+    {
+      "id": "battle-bunker-ab-straps",
+      "section": "sport",
+      "catno": "34 K 7102",
+      "title": "Battle Bunker Hanging Ab Straps",
+      "maker": "Battle Bunker",
+      "url": "https://thebattlebunker.com/products/battle-bunker-hanging-ab-straps?variant=45041667735737",
+      "img": "img/ab-straps.webp",
+      "fit": "cover",
+      "caption": "Sold as a pair",
+      "price": 59.99,
+      "currency": "USD",
+      "unit": "Pair",
+      "blurb": "Hang from any pull-up bar or rack for leg raises and knee tucks. Fabric loop and carabiner close around the bar, so no metal hooks to slip or scrape. Cordura 1000D with reinforced stitching, tested past 1,000 lbs. Made in the U.S.A.",
+      "info": "<b>Size:</b> 12-in. strap, 8-in. padded arm support. Fits bars 1 to 2½ in. diameter. <b>Note:</b> pre-order at the shop.",
+      "shipwt": "Shpg. wt. 2 lbs.",
+      "note": ""
+    },
+    {
+      "id": "hanna-touring-cap",
+      "section": "hats",
+      "catno": "15 H 2204",
+      "title": "Donegal Touring Cap",
+      "maker": "Hanna Hats of Donegal",
+      "url": "https://hannahats.com/products/donegal-touring-cap-tweed?variant=50183737508173",
+      "img": "img/touring-cap.webp",
+      "caption": "Harris Tweed, Blue & Moss Green Barley Corn",
+      "price": 82.0,
+      "currency": "EUR",
+      "unit": "",
+      "blurb": "Slim, tailored flat cap with stitched-down curved peak and deep back for a secure fit. 100% wool tweed, acetate lining. Handcrafted in Ireland; allow 5 to 15 working days to make. Ships duty-paid to the U.S.",
+      "info": "<b>Color:</b> Harris Tweed, Blue &amp; Moss Green Barley Corn. <b>Size:</b> XL (62–63 cm).",
+      "shipwt": "Shpg. wt. 11 oz.",
+      "note": ""
+    },
+    {
+      "id": "hanna-gift-card",
+      "section": "hats",
+      "catno": "15 H 2299",
+      "title": "Hanna Hats E-Gift Card",
+      "maker": "Hanna Hats of Donegal",
+      "url": "https://hannahats.com/products/hanna-hats-of-donegal-gift-card",
+      "img": "img/gift-card.webp",
+      "caption": "",
+      "price": 50.0,
+      "priceTo": 150.0,
+      "currency": "EUR",
+      "unit": "Card",
+      "blurb": "Can't decide on a tweed? Good for any Hanna piece. Sent by e-mail with a code to use at checkout. Online store only.",
+      "info": "<b>Amounts:</b> €50, 75, 80, 100, 125 or 150.",
+      "shipwt": "E-mailed, no shpg.",
+      "note": "",
+      "fromLabel": "Cards from"
+    },
+    {
+      "id": "beardbrand-norse-winter",
+      "section": "hats",
+      "catno": "15 H 2301",
+      "title": "Norse Winter Beard Oil",
+      "maker": "Beardbrand",
+      "url": "https://www.beardbrand.com/products/norse-winter-beard-oil",
+      "img": "img/beard-oil.webp",
+      "fit": "cover",
+      "caption": "4-oz. pump bottle",
+      "price": 42.0,
+      "currency": "USD",
+      "unit": "",
+      "blurb": "Smells like December in Scandinavia: fir balsam, frankincense, amber, oak and leather over bergamot. Jojoba, Abyssinian, babassu and castor oils soften the beard and soothe the skin underneath. Use as beard oil, face oil, or before and after shaving.",
+      "info": "<b>Size:</b> 4 fl. oz. (118 ml) with pump. Also in 1.7 oz., $32. <b>Note:</b> shop lists it sold out as of Nov. 11.",
+      "shipwt": "",
+      "note": ""
+    },
+    {
+      "id": "gm-box-unlimited",
+      "section": "rpg",
+      "catno": "27 B 4401",
+      "title": "The Game Master's Box of Unlimited Adventure",
+      "maker": "Jeff Ashworth; Media Lab Books",
+      "url": "https://www.amazon.com/dp/1956403485",
+      "img": "img/unlimited-adventure.webp",
+      "caption": "Three hardcovers in slipcase",
+      "price": 65.0,
+      "currency": "USD",
+      "unit": "Set",
+      "blurb": "Slipcased set of three 5th edition books: Random Encounters, Non-Player Characters, and Traps, Puzzles and Dungeons. Thousands of tables, story hooks, maps and dungeon chambers.",
+      "info": "<b>Pages:</b> 784 total. ISBN 978-1-956403-48-0.",
+      "shipwt": "",
+      "note": ""
+    },
+    {
+      "id": "gm-instant-towns",
+      "section": "rpg",
+      "catno": "27 B 4402",
+      "title": "The Game Master's Book of Instant Towns and Cities",
+      "maker": "Jeff Ashworth & Tim Baker; Media Lab Books",
+      "url": "https://www.amazon.com/dp/1956403981",
+      "img": "img/instant-towns.webp",
+      "caption": "",
+      "price": 24.99,
+      "currency": "USD",
+      "unit": "",
+      "blurb": "160+ villages, towns and cities ready on demand, plus random generators for NPCs, side quests, taverns, shops and temples. For 5th edition adventures.",
+      "info": "<b>Hardcover,</b> 272 pages. ISBN 978-1-956403-98-5.",
+      "shipwt": "Shpg. wt. 2 lbs. 8 oz.",
+      "note": ""
+    },
+    {
+      "id": "making-of-original-dd",
+      "section": "rpg",
+      "catno": "27 B 4403",
+      "title": "The Making of Original D&D: 1970–1977",
+      "maker": "Wizards of the Coast",
+      "url": "https://www.amazon.com/dp/0786969857",
+      "img": "img/original-dnd.webp",
+      "caption": "",
+      "price": 89.99,
+      "currency": "USD",
+      "unit": "",
+      "approx": true,
+      "blurb": "The story of how it all began. Rare drafts and documents from the game's origin, including the very first draft of original D&D.",
+      "info": "<b>Hardcover,</b> 576 pages. ISBN 978-0-7869-6985-2.",
+      "shipwt": "Shpg. wt. 6 lbs. 7 oz.",
+      "note": ""
+    },
+    {
+      "id": "dragon-magazine-lot",
+      "section": "rpg",
+      "catno": "27 B 4404",
+      "title": "Dragon Magazine, Back Issues",
+      "maker": "TSR, Inc.; assorted lots on eBay",
+      "url": "https://www.ebay.com/sch/i.html?_nkw=dragon+magazine+lot&_sacat=280",
+      "img": "img/dragon-lot.webp",
+      "caption": "Issues #67 thru #71 (1982) shown",
+      "price": 20.0,
+      "priceTo": 200.0,
+      "currency": "USD",
+      "unit": "Lot",
+      "fromLabel": "Lots from",
+      "blurb": "TSR's monthly magazine for D&D players: new monsters, spells and character classes, game variants, comics, reviews and wonderful period ads. Sold in lots of assorted issues.",
+      "info": "<b>Issue nos.:</b> '70s run is #1 (June 1976) thru #32; '80s run is #33 (Jan. 1980) thru #152 (Dec. 1989).",
+      "shipwt": "",
+      "note": "Any from the '70s or '80s would be great, in any quantity or condition. I just enjoy the trip down memory lane.",
+      "cta": "Search eBay for lots",
+      "fit": "cover"
+    },
+    {
+      "id": "monster-manual-1e",
+      "section": "rpg",
+      "catno": "27 B 4405",
+      "title": "AD&D Monster Manual, 1979",
+      "maker": "Gary Gygax; TSR Games",
+      "url": "https://www.nobleknight.com/P/257/Monster-Manual-1st-Cover-5th-Printing",
+      "img": "img/monster-manual.webp",
+      "caption": "Original cover, wizard logo",
+      "price": 112.5,
+      "was": 125.0,
+      "currency": "USD",
+      "unit": "",
+      "blurb": "The original Advanced D&D bestiary, Aerial Servant to Zombie: dragons, orcs, ghosts, werewolves and the rest, each with special attacks, defenses and magic resistance. First cover with the yellow angled banner. Used, out of print.",
+      "info": "<b>Condition:</b> Very Good (prior owner's name inside). Hardcover, 112 pages. 5th printing, 1979.",
+      "shipwt": "",
+      "note": ""
+    },
+    {
+      "id": "noble-knight-gift-card",
+      "section": "rpg",
+      "catno": "27 B 4499",
+      "title": "Noble Knight Games Gift Card",
+      "maker": "Noble Knight Games",
+      "url": "https://www.nobleknight.com/gift-card",
+      "img": "img/noble-knight-card.webp",
+      "caption": "",
+      "price": 0,
+      "anyAmount": true,
+      "currency": "USD",
+      "unit": "Card",
+      "blurb": "Good for anything at Noble Knight, the big shop for new and out-of-print RPGs, board games and miniatures. Perfect for filling gaps in the old AD&D shelf.",
+      "info": "<b>Amount:</b> your choice. Digital card.",
+      "shipwt": "E-mailed, no shpg.",
+      "note": ""
+    }
+  ]
+}
+</script>
+<script>
+const DATA = JSON.parse(document.getElementById("catalog").textContent);
+DATA.items.forEach((it, i) => (it.n = i + 1));                 // item numbers run through the whole book
+const SECTIONS = Object.fromEntries(DATA.sections.map((s, i) => [s.id, { ...s, page: 602 + i }]));
+const state = { dept: "all", sort: "catalog", view: "grid" };
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const sym = { USD: "$", EUR: "€", GBP: "£" };
+const money = (it, v) => `${sym[it.currency] || ""}${v.toFixed(2)}`;
+const toUSD = (it) => it.anyAmount ? 0 : it.price * (it.currency === "EUR" ? 1.16 : it.currency === "GBP" ? 1.32 : 1);
+const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return "shop"; } };
+
+function priceText(it) {
+  if (it.anyAmount) return "Any amount";
+  const s = sym[it.currency] || "";
+  return it.priceTo ? `${s}${it.price.toFixed(0)}–${it.priceTo.toFixed(0)}` : `${it.approx ? "~" : ""}${money(it, it.price)}`;
+}
+function visibleItems() {
+  let items = DATA.items.slice();
+  if (state.dept !== "all") items = items.filter((i) => i.section === state.dept);
+  if (state.sort === "low") items.sort((a, b) => toUSD(a) - toUSD(b));
+  if (state.sort === "high") items.sort((a, b) => toUSD(b) - toUSD(a));
+  return items;
+}
+
+function panelHTML(it) {
+  const S = SECTIONS[it.section];
+  let tag = "";
+  if (it.was) tag = `<div class="ribbon"><span class="hdr">Holiday Value</span><span class="cut">Cut ${sym[it.currency]}${Math.round(it.was - it.price)}</span><br><span class="was">Was <s>${money(it, it.was)}</s></span><span class="now">${money(it, it.price)}</span></div>`;
+  else if (it.priceTo) tag = `<div class="ptag"><small>${esc(it.fromLabel || "From")}</small><b>${sym[it.currency]}${it.price.toFixed(0)}</b></div>`;
+  return `<figure class="panel" style="--bg-photo:${S.photo}">
+    <a class="panel-link" href="${esc(it.url)}" target="_blank" rel="noopener" aria-label="${esc(it.title)} at ${esc(host(it.url))}">
+      <div class="fallback">${esc(it.title.replace(/^The /, ""))}</div>
+      ${it.img ? `<img${it.fit === "cover" ? ' class="cover"' : ""} src="${esc(it.img)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
+      <div class="grain"></div>
+      ${tag}
+      ${it.caption ? `<figcaption class="caption">${esc(it.caption)}</figcaption>` : ""}
+      <span class="num" aria-hidden="true">${it.n}</span>
+    </a>
+  </figure>`;
+}
+
+function entryHTML(it) {
+  let amt;
+  if (it.anyAmount) amt = `${it.unit || ""} any amount`;
+  else if (it.priceTo) amt = `${it.unit || ""} ${sym[it.currency]}${it.price.toFixed(0)} to ${sym[it.currency]}${it.priceTo.toFixed(0)}`;
+  else if (it.was) amt = `Sale price ${money(it, it.price)}`;
+  else amt = `${it.unit ? it.unit + " " : ""}${money(it, it.price)}${it.approx ? " approx." : ""}`;
+  return `<div class="entry">
+    <p>(${it.n}) <span class="t">${esc(it.title)}.</span> <span class="maker">${esc(it.maker)}.</span> ${esc(it.blurb)}${it.was ? ` Regular price ${money(it, it.was)}.` : ""}</p>
+    ${it.info ? `<p class="info">${it.info}</p>` : ""}
+    ${it.note ? `<p class="note">${esc(it.note)}</p>` : ""}
+    <div class="oline"><span>${esc(it.catno)}${it.shipwt ? "—" + esc(it.shipwt) : ""}</span><span class="lead" aria-hidden="true"></span><span class="amt">${esc(amt.trim())}</span></div>
+    <a class="shop" href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.cta || "See it at " + host(it.url))} ↗</a>
+  </div>`;
+}
+
+const headlineHTML = (s) => `<div class="headline ${s.style || "light"}"><h2>${esc(s.headline || s.name)}</h2></div>`;
+const folioHTML = (page) => page % 2 === 0
+  ? `<div class="folio left">${page}<span class="box">Holiday</span><span class="small">ALL</span></div>`
+  : `<div class="folio"><span class="small">ALL</span><span class="box">Holiday</span>${page}</div>`;
+
+function sheetHTML(head, items, page, full) {
+  return `<section class="sheet${full ? " full" : ""}">
+    ${headlineHTML(head)}
+    <div class="layout">
+      <div class="mosaic">${items.map(panelHTML).join("")}</div>
+      <div class="copycol">${items.map(entryHTML).join("")}</div>
+    </div>
+    ${page ? folioHTML(page) : ""}
+  </section>`;
+}
+
+function renderGrid(items) {
+  if (state.sort !== "catalog") {
+    return `<div class="spread">${sheetHTML({ headline: state.sort === "low" ? "Stocking stuffers on up . . ." : "From the top of the list . . .", style: "light" }, items, null, true)}</div>`;
+  }
+  const secs = DATA.sections.filter((s) => items.some((i) => i.section === s.id));
+  const sheets = secs.map((s) => sheetHTML(s, items.filter((i) => i.section === s.id), SECTIONS[s.id].page, secs.length === 1));
+  let html = "";
+  for (let i = 0; i < sheets.length; i += 2) html += `<div class="spread">${sheets.slice(i, i + 2).join("")}</div>`;
+  return html;
+}
+
+function renderList(items) {
+  const rows = items.map((it) => {
+    const spec = (it.info || "").replace(/<\/?b>/g, "").replace(/&amp;/g, "&");
+    return `<tr>
+      <td>${esc(it.catno)}</td><td>${SECTIONS[it.section].page}</td><td>${esc(it.title)}</td>
+      <td>${esc(spec)}</td><td class="num">1</td><td class="num">${priceText(it)}</td>
+      <td><a class="shop" href="${esc(it.url)}" target="_blank" rel="noopener">Shop ↗</a></td></tr>`;
+  }).join("");
+  const blanks = Array.from({ length: Math.max(0, 8 - items.length) }, () => `<tr class="fill"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`).join("");
+  return `<div class="spread"><section class="sheet full">
+    <div class="orderform" aria-label="Order form">
+      <header><h2>Order Form</h2><span>Please print · one of each</span></header>
+      <div class="tablewrap"><table class="ob">
+        <thead><tr><th>Catalog number</th><th>Page</th><th>Name of item</th><th>Color · Size · Details</th><th>How many</th><th>Price each</th><th>Where to buy</th></tr></thead>
+        <tbody>${rows}${blanks}</tbody>
+      </table></div>
+    </div>
+  </section></div>`;
+}
+
+function renderControls() {
+  const rows = [{ id: "all", name: "All departments", page: SECTIONS[DATA.sections[0].id].page }, ...DATA.sections.map((s) => ({ id: s.id, name: s.name, page: SECTIONS[s.id].page }))];
+  $("#idx").innerHTML = rows.map((r) => `<button type="button" class="idx-row" data-dept="${r.id}" aria-pressed="${state.dept === r.id}"><span class="name">${esc(r.name)}</span><span class="lead" aria-hidden="true"></span><span class="pg">${r.page}</span></button>`).join("");
+  const box = (attr, val, label, cur) => `<button type="button" class="box-opt" data-${attr}="${val}" aria-pressed="${cur === val}">${label}</button>`;
+  $("#optView").innerHTML = box("view", "grid", "Catalog pages", state.view) + box("view", "list", "Order form", state.view);
+  $("#optSort").innerHTML = box("sort", "catalog", "By page", state.sort) + box("sort", "low", "Price, low–high", state.sort) + box("sort", "high", "High–low", state.sort);
+}
+function render() {
+  const items = visibleItems();
+  $("#out").innerHTML = state.view === "grid" ? renderGrid(items) : renderList(items);
+  renderControls();
+}
+
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("button"); if (!t) return;
+  if (t.dataset.dept) state.dept = t.dataset.dept;
+  else if (t.dataset.view) { state.view = t.dataset.view; try { localStorage.setItem("catalog.view", state.view); } catch {} }
+  else if (t.dataset.sort) state.sort = t.dataset.sort;
+  else return;
+  render();
+});
+try { const v = localStorage.getItem("catalog.view"); if (v === "list" || v === "grid") state.view = v; } catch {}
+render();
+</script>
+
+</body>
+</html>
